@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<title>
+    Welcome to my webpage
+</title>
+
+{% if name %}
+    <!-- link to CSS for profile page -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style_for_homepage.css') }}">
+    <h1>
+        Logged in
+        Hey there {{ name }}
+    </h1>
+{% else %}
+    Hey remember to log in
+
+{% endif %}
