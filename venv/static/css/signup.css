@@ -3,6 +3,14 @@
   --input-padding-y: .75rem;
 }
 
+.back-to-home {
+  text-align:center;
+}
+
+.back-to-home a {
+  color:white;
+}
+
 body {
   background: #3b5998;
 }
