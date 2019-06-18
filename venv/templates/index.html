@@ -19,7 +19,7 @@
     <link href="/static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="/static/css/resume.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename= 'css/resume.css')}}" rel="stylesheet">
 
     <!-- dev-icon -->
     <link rel="stylesheet"
@@ -61,7 +61,7 @@
                 <a class="nav-link js-scroll-trigger" href="#awards">Awards</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#" data-toggle="modal" data-target="#login-modal">Login</a>
+                <a class="nav-link" href="#" data-toggle="modal" data-target="#login-modal">Got Tips?</a>
             </li>
         </ul>
 
@@ -73,6 +73,7 @@
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">
+                <b>Sign in to post</b>
                 <button type="button" class="close" data-dismiss="modal">
                     &times;
                 </button>
@@ -104,22 +105,6 @@
     </div>
 </div>
 
-<!--<div class="modal fade" id="login-modal" tabindex="-1" data-keyboard="false" data-backdrop="static">-->
-<!--<div class="modal-dialog">-->
-<!--<div class="loginmodal-container">-->
-<!--<h1>Login to Your Account</h1><br>-->
-<!--<form>-->
-<!--<input type="text" name="user" placeholder="Username">-->
-<!--<input type="password" name="pass" placeholder="Password">-->
-<!--<input type="submit" name="login" class="login loginmodal-submit" value="Login">-->
-<!--</form>-->
-
-<!--<div class="login-help">-->
-<!--<a href="#">Register</a> - <a href="#">Forgot Password</a>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
 
 <div class="container-fluid p-0">
 
