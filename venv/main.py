@@ -25,7 +25,7 @@ def index():
 def signup():
     form = RegistrationForm()
     if form.validate_on_submit():
-        flash(f'Account creted for {form.username.data}!', 'success')
+        flash(f'Account created for {form.username.data}!', 'success')
         return redirect(url_for('index'))
 
     return render_template("signup.html", title="Register", form=form)

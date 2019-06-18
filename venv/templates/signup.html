@@ -7,13 +7,13 @@
     <link href="{{ url_for('static', filename='css/signup.css' )}}" rel="stylesheet">
 
     {% with messages = get_flashed_messages(with_categories = true) %}
-        {% if messages %}
-            {% for category, message in messages%}
-                <div class="alert alert-{{ category }}">
-                    {{ message }}
-                </div>
-            {% endfor %}
-        {% endif %}
+    {% if messages %}
+    {% for category, message in messages%}
+    <div class="alert alert-{{ category }}">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
     {% endwith %}
 </head>
 <body>
@@ -33,17 +33,34 @@
                         {{ form.hidden_tag() }}
                         <div class="form-label-group">
                             <!--<input type="text" id="inputUserame" class="form-control" placeholder="Username" required-->
-                                   <!--autofocus>-->
+                            <!--autofocus>-->
                             <!--<label for="inputUserame">Username</label>-->
+                            {% if form.username.errors %}
+                            {{ form.username(class_="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.username.errors %}
+                                <span> {{ error }} </span>
+                                {% endfor %}
+                            </div>
+                            {% else %}
                             {{ form.username(class_="form-control", autofocus=true, placeholder="Username") }}
+                            {% endif %}
                             {{ form.username.label() }}
-
                         </div>
                         <div class="form-label-group">
                             <!--<input type="email" id="inputEmail" class="form-control" placeholder="Email address"-->
                             <!--required>-->
                             <!--<label for="inputEmail">Email address</label>-->
+                            {% if form.email.errors %}
+                            {{ form.email(class_="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.email.errors %}
+                                <span> {{ error }} </span>
+                                {% endfor %}
+                            </div>
+                            {% else %}
                             {{ form.email(class_="form-control", autofocus=true, placeholder="Email") }}
+                            {% endif %}
                             {{ form.email.label(class="form-control-label") }}
                         </div>
 
@@ -53,16 +70,34 @@
                             <!--<input type="password" id="inputPassword" class="form-control" placeholder="Password"-->
                             <!--required>-->
                             <!--<label for="inputPassword">Password</label>-->
-                            {{ form.password(class="form-control", autofocus=true, placeholder="Password") }}
+                            {% if form.password.errors %}
+                            {{ form.password(class_="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.password.errors %}
+                                <span> {{ error }} </span>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ form.password(class_="form-control", autofocus=true, placeholder="Password") }}
+                            {% endif %}
                             {{ form.password.label(class="form-control-label") }}
-
                         </div>
 
                         <div class="form-label-group">
                             <!--<input type="password" id="inputConfirmPassword" class="form-control" placeholder="Password"-->
                             <!--required>-->
                             <!--<label for="inputConfirmPassword">Confirm password</label>-->
-                            {{ form.confirm_password(class_="form-control", autofocus=true, placeholder="Confirm Password") }}
+                            {% if form.confirm_password.errors %}
+                            {{ form.confirm_password(class_="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.confirm_password.errors %}
+                                <span> {{ error }} </span>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ form.confirm_password(class_="form-control", autofocus=true, placeholder="Confirm
+                            Password") }}
+                            {% endif %}
                             {{ form.confirm_password.label(class="form-control-label") }}
                         </div>
 
