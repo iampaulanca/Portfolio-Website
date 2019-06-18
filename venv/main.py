@@ -15,10 +15,16 @@ app = create_app()
 app.config['SECRET_KEY'] = '419PAUL419'
 
 
-@app.route('/')
-@app.route('/<name>')
+@app.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template("index.html")
+    form = LoginForm()
+    if form.validate_on_submit():
+        if form.email.data == 'admin@blog.com' and form.password.data == 'password':
+            flash('You have been logged in!', 'success')
+            return redirect(url_for('index'))
+        else:
+            flash('Login Unsuccessful. Please check username and password', 'danger')
+    return render_template("index.html", title="index", form=form)
 
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -30,11 +36,17 @@ def signup():
 
     return render_template("signup.html", title="Register", form=form)
 
-@app.route('/login')
-def login():
-    form = LoginForm()
-    return render_template("login.html", title="Login", form=form)
 
+# @app.route('/login')
+# def login():
+#     form = LoginForm()
+#     if form.validate_on_submit():
+#         if form.email.data == 'admin@blog.com' and form.password.data == 'password':
+#             flash(f'You have been logged in', 'success')
+#             return redirect(url_for('index'))
+#         else:
+#             flash(f'Login unsuccessful. Please check username and password', 'danger')
+#     return render_template("login.html", title="Login", form=form)
 
 
 if __name__ == "__main__":

@@ -24,8 +24,15 @@
     <!-- dev-icon -->
     <link rel="stylesheet"
           href="https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css">
-
-
+    {% with messages = get_flashed_messages(with_categories = true) %}
+    {% if messages %}
+    {% for category, message in messages%}
+    <div class="alert alert-{{ category }}">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
 </head>
 
 <body id="page-top">
@@ -68,6 +75,7 @@
     </div>
 </nav>
 
+<!-- MODAL LOGIN -->
 <div class="modal fade" tabindex="-1" id="login-modal"
      data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog modal-sm">
@@ -78,32 +86,58 @@
                     &times;
                 </button>
             </div>
-            <div class="modal-body">
-                <form>
+            <form method="POST" action="">
+
+                <div class="modal-body">
+                    {{ form.hidden_tag() }}
                     <div class="form-group">
-                        <label for="inputUserName">Username</label>
-                        <input class="form-control" placeholder="Login Username"
-                               type="text" id="inputUserName"/>
+                        <!--<label for="inputUserName">Username</label>-->
+                        <!--<input class="form-control" placeholder="Login Username"-->
+                        <!--type="text" id="inputUserName"/>-->
+                        {% if form.email.errors %}
+                        {{ form.email(class_="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                            <span> {{ error }} </span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.email(class_="form-control", autofocus=true, placeholder="Email") }}
+                        {% endif %}
+
                     </div>
                     <div class="form-group">
-                        <label for="inputPassword">Password</label>
-                        <input class="form-control" placeholder="Login Password"
-                               type="password" id="inputPassword"/>
+                        <!--<label for="inputPassword">Password</label>-->
+                        <!--<input class="form-control" placeholder="Login Password"-->
+                        <!--type="password" id="inputPassword"/>-->
+                        {% if form.password.errors %}
+                        {{ form.password(class_="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.password.errors %}
+                            <span> {{ error }} </span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.password(class_="form-control", autofocus=true, placeholder="Password") }}
+                        {% endif %}
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <div class="login-help">
-                    <a href="/signup">Register</a> - <a href="/forgotpassword">Forgot Password</a>
+                    {{ form.submit(class="btn btn-primary") }}
                 </div>
-                <button type="submit" class="btn btn-primary">Login</button>
-                <button type="button" class="btn btn-primary"
-                        data-dismiss="modal">Close
-                </button>
-            </div>
+                <div class="modal-footer">
+                    <div class="login-help">
+                        <a href="/signup">Register</a> - <a href="/forgotpassword">Forgot Password</a>
+                    </div>
+                    <!--<button type="submit" class="btn btn-primary">Login</button>-->
+                    <button type="button" class="btn btn-primary"
+                            data-dismiss="modal">Close
+                    </button>
+                </div>
+            </form>
+
         </div>
     </div>
 </div>
+<!-- MODAL LOGIN END-->
 
 
 <div class="container-fluid p-0">
