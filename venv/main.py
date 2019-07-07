@@ -36,9 +36,16 @@ def signup():
 
     return render_template("signup.html", title="Register", form=form)
 
+
 @app.route('/blog')
 def blog():
     return render_template("blog.html")
+
+
+@app.route('/post')
+def post():
+    return render_template("post.html")
+
 
 
 # @app.route('/login')

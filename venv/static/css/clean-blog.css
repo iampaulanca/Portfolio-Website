@@ -4,6 +4,7 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-clean-blog/blob/master/LICENSE)
  */
 
+
 body {
   font-size: 20px;
   color: #212529;
@@ -190,7 +191,7 @@ header.masthead .overlay {
   left: 0;
   height: 100%;
   width: 100%;
-  background-color: #212529;
+  background-color: #3b5998;
   opacity: 0.5;
 }
 
@@ -417,4 +418,8 @@ footer .copyright {
 .btn-lg {
   font-size: 16px;
   padding: 25px 35px;
+}
+
+.comment-section {
+  padding: 10px;
 }
