@@ -90,6 +90,14 @@ p.lead {
   text-transform: uppercase;
 }
 
+#sideNav .navbar-nav .nav-item-bottom .nav-link {
+  font-weight: 800;
+  letter-spacing: 0.05rem;
+  text-transform: uppercase;
+  position: fixed
+  bottom: 0
+}
+
 #sideNav .navbar-toggler:focus {
   outline-color: #d48a6e;
 }
@@ -147,7 +155,7 @@ p.lead {
     display: block
     position: sticky;
     font-weight = 800
-    bottom: 10px;
+    bottom: 0px;
     border: 3px solid #8AC007;
     color: #FFFF
   }
@@ -159,6 +167,7 @@ p.lead {
   #sideNav .navbar-collapse .navbar-nav .nav-item .nav-link {
     display: block;
   }
+
 }
 
 section.resume-section {
