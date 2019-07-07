@@ -36,6 +36,10 @@ def signup():
 
     return render_template("signup.html", title="Register", form=form)
 
+@app.route('/blog')
+def blog():
+    return render_template("blog.html")
+
 
 # @app.route('/login')
 # def login():
@@ -47,7 +51,6 @@ def signup():
 #         else:
 #             flash(f'Login unsuccessful. Please check username and password', 'danger')
 #     return render_template("login.html", title="Login", form=form)
-
 
 if __name__ == "__main__":
     app.run()

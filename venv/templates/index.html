@@ -11,12 +11,13 @@
     <title>Resume - Not trying to starve</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
 
     <!-- Custom fonts for this template -->
     <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet">
-    <link href="/static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="{{ url_for('static', filename= 'css/resume.css')}}" rel="stylesheet">
@@ -26,13 +27,14 @@
           href="https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css">
     {% with messages = get_flashed_messages(with_categories = true) %}
     {% if messages %}
-    {% for category, message in messages%}
-    <div class="alert alert-{{ category }}">
-        {{ message }}
-    </div>
-    {% endfor %}
+        {% for category, message in messages%}
+            <div class="alert alert-{{ category }}">
+                {{ message }}
+            </div>
+        {% endfor %}
     {% endif %}
     {% endwith %}
+
 </head>
 
 <body id="page-top">
@@ -68,80 +70,16 @@
                 <a class="nav-link js-scroll-trigger" href="#awards">Awards</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#" data-toggle="modal" data-target="#login-modal">Got Tips?</a>
+                <a class="nav-link" href="{{ url_for('blog') }}">My blog</a>
             </li>
+
         </ul>
 
     </div>
 </nav>
 
-<!-- MODAL LOGIN -->
-<div class="modal fade" tabindex="-1" id="login-modal"
-     data-keyboard="false" data-backdrop="static">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <b>Sign in to post</b>
-                <button type="button" class="close" data-dismiss="modal">
-                    &times;
-                </button>
-            </div>
-            <form method="POST" action="">
-
-                <div class="modal-body">
-                    {{ form.hidden_tag() }}
-                    <div class="form-group">
-                        <!--<label for="inputUserName">Username</label>-->
-                        <!--<input class="form-control" placeholder="Login Username"-->
-                        <!--type="text" id="inputUserName"/>-->
-                        {% if form.email.errors %}
-                        {{ form.email(class_="form-control is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.email.errors %}
-                            <span> {{ error }} </span>
-                            {% endfor %}
-                        </div>
-                        {% else %}
-                        {{ form.email(class_="form-control", autofocus=true, placeholder="Email") }}
-                        {% endif %}
-
-                    </div>
-                    <div class="form-group">
-                        <!--<label for="inputPassword">Password</label>-->
-                        <!--<input class="form-control" placeholder="Login Password"-->
-                        <!--type="password" id="inputPassword"/>-->
-                        {% if form.password.errors %}
-                        {{ form.password(class_="form-control is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.password.errors %}
-                            <span> {{ error }} </span>
-                            {% endfor %}
-                        </div>
-                        {% else %}
-                        {{ form.password(class_="form-control", autofocus=true, placeholder="Password") }}
-                        {% endif %}
-                    </div>
-                    {{ form.submit(class="btn btn-primary") }}
-                </div>
-                <div class="modal-footer">
-                    <div class="login-help">
-                        <a href="/signup">Register</a> - <a href="/forgotpassword">Forgot Password</a>
-                    </div>
-                    <!--<button type="submit" class="btn btn-primary">Login</button>-->
-                    <button type="button" class="btn btn-primary"
-                            data-dismiss="modal">Close
-                    </button>
-                </div>
-            </form>
-
-        </div>
-    </div>
-</div>
-<!-- MODAL LOGIN END-->
-
 
 <div class="container-fluid p-0">
-
     <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="about">
         <div class="w-100">
             <h1 class="mb-0">Paul
@@ -319,14 +257,14 @@
 </div>
 
 <!-- Bootstrap core JavaScript -->
-<script src="/static/vendor/jquery/jquery.min.js"></script>
-<script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js')}}"></script>
+<script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
 <!-- Plugin JavaScript -->
-<script src="/static/vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="{{ url_for('static', filename='vendor/jquery-easing/jquery.easing.min.js')}}"></script>
 
 <!-- Custom scripts for this template -->
-<script src="/static/js/resume.min.js"></script>
+<script src="{{ url_for('static', filename='js/resume.min.js' )}}"></script>
 
 </body>
 
