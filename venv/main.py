@@ -4,6 +4,7 @@ from flask import flash
 from flask import redirect
 from flask_bootstrap import Bootstrap
 from forms import RegistrationForm, LoginForm
+from waitress import serve
 
 
 def create_app():
@@ -47,6 +48,10 @@ def post():
     return render_template("post.html")
 
 
+@app.route('/about')
+def about():
+    return render_template("about.html")
+
 
 # @app.route('/login')
 # def login():
@@ -60,4 +65,4 @@ def post():
 #     return render_template("login.html", title="Login", form=form)
 
 if __name__ == "__main__":
-    app.run()
+    serve(app, host='0.0.0.0', port=5000)
