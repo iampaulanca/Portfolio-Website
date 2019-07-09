@@ -3,6 +3,16 @@
 
 <head>
 
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-143533202-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-143533202-1');
+    </script>
+
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -27,11 +37,11 @@
           href="https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css">
     {% with messages = get_flashed_messages(with_categories = true) %}
     {% if messages %}
-        {% for category, message in messages%}
-            <div class="alert alert-{{ category }}">
-                {{ message }}
-            </div>
-        {% endfor %}
+    {% for category, message in messages%}
+    <div class="alert alert-{{ category }}">
+        {{ message }}
+    </div>
+    {% endfor %}
     {% endif %}
     {% endwith %}
 
@@ -70,7 +80,7 @@
                 <a class="nav-link js-scroll-trigger" href="#awards">Awards</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('blog') }}">My blog</a>
+                <a class="nav-link my-blog" href="{{ url_for('blog') }}">My Blog</a>
             </li>
 
         </ul>

@@ -4,6 +4,7 @@ from flask import flash
 from flask import redirect
 from flask_bootstrap import Bootstrap
 from forms import RegistrationForm, LoginForm
+from waitress import serve
 
 
 def create_app():
@@ -12,8 +13,6 @@ def create_app():
     return app
 
 app = create_app()
-app.config['SECRET_KEY'] = '419PAUL419'
-
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -47,6 +46,10 @@ def post():
     return render_template("post.html")
 
 
+@app.route('/about')
+def about():
+    return render_template("about.html")
+
 
 # @app.route('/login')
 # def login():
@@ -61,3 +64,4 @@ def post():
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0',port=80)
+
