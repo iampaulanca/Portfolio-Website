@@ -13,8 +13,6 @@ def create_app():
     return app
 
 app = create_app()
-app.config['SECRET_KEY'] = '419PAUL419'
-
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -65,4 +63,5 @@ def about():
 #     return render_template("login.html", title="Login", form=form)
 
 if __name__ == "__main__":
-    serve(app, host='0.0.0.0', port=5000)
+    app.run()
+    # serve(app, host='0.0.0.0', port=5000)
