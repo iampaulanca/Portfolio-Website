@@ -68,8 +68,14 @@ def post():
 
 @app.route('/about')
 def about():
-    return render_template("about.html")
-
+    loginform = LoginForm()
+    if loginform.validate_on_submit():
+        if loginform.email.data == 'admin@blog.com' and loginform.password.data == 'password':
+            flash('You have been logged in!', 'success')
+            return redirect(url_for('blog'))
+        else:
+            flash('Login Unsuccessful. Please check username and password', 'danger')
+    return render_template("about.html", loginform=loginform)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True)

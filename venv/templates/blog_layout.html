@@ -77,31 +77,23 @@
             <div class="col-lg-8 col-md-10 mx-auto">
                 <ul class="list-inline text-center">
                     <li class="list-inline-item">
-                        <a href="#">
-                <span class="fa-stack fa-lg">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
-                </span>
+                        <a href="https://www.linkedin.com/in/paul-ancajima/">
+                            <span class="fa-stack fa-lg">
+                              <i class="fas fa-circle fa-stack-2x"></i>
+                              <i class="fab fa-linkedin-in fa-stack-1x fa-inverse"></i>
+                            </span>
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a href="#">
-                <span class="fa-stack fa-lg">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
-                </span>
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="#">
-                <span class="fa-stack fa-lg">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                </span>
+                        <a href="https://github.com/iampaulanca">
+                            <span class="fa-stack fa-lg">
+                              <i class="fas fa-circle fa-stack-2x"></i>
+                              <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
                         </a>
                     </li>
                 </ul>
-                <p class="copyright text-muted">Copyright &copy; Your Website 2019</p>
+                <p class="copyright text-muted">Copyright &copy; Paul's Blog 2019</p>
             </div>
         </div>
     </div>
@@ -118,37 +110,46 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <label class="modal-body">
                 <form method="POST" action="">
                     {{ loginform.hidden_tag() }}
                     <div class="form-group">
                         {% if loginform.email.errors %}
-                        {{ loginform.email(class_="form-control is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in loginform.email.errors %}
-                            <span> {{ error }} </span>
-                            {% endfor %}
-                        </div>
+                            {{ loginform.email(class_="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in loginform.email.errors %}
+                                <span> {{ error }} </span>
+                                {% endfor %}
+                            </div>
                         {% else %}
-                        {{ loginform.email(class_="form-control", autofocus=true) }}
+                            {{ loginform.email(class_="form-control", autofocus=true) }}
                         {% endif %}
                         {{ loginform.email.label() }}
                     </div>
                     <div class="form-group">
                         {% if loginform.password.errors %}
-                        {{ loginform.password(class_="form-control is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in loginform.password.errors %}
-                            <span> {{ error }} </span>
-                            {% endfor %}
-                        </div>
+                            {{ loginform.password(class_="form-control is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in loginform.password.errors %}
+                                <span> {{ error }} </span>
+                                {% endfor %}
+                            </div>
                         {% else %}
-                        {{ loginform.password(class_="form-control", autofocus=true) }}
+                            {{ loginform.password(class_="form-control", autofocus=true) }}
                         {% endif %}
                         {{ loginform.password.label() }}
                     </div>
+                    <small class="text-muted ml-1" style="font-size:small">
+                        {{ loginform.remember(class="checkbox") }}
+                        {{ loginform.remember.label(class="checkbox") }}
+                    </small>
                     <div class="modal-footer">
-                        <small class="mr-auto">
+                        <small class="mr-auto" style="font-size:small">
+                            <a href="{{ url_for('signup') }}">
+                                Sign Up
+                            </a>
+                        </small>
+                        <small class="mr-auto" style="font-size:small">
                             <a href="/forgotpassword">
                                 Forgot Password?
                             </a>

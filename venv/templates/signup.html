@@ -1,20 +1,10 @@
-<!-- This snippet uses Font Awesome 5 Free as a dependency. You can download it at fontawesome.io! -->
 <head>
+
     <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/signup.css' )}}" rel="stylesheet">
 
-    {% with messages = get_flashed_messages(with_categories = true) %}
-    {% if messages %}
-    {% for category, message in messages%}
-    <div class="alert alert-{{ category }}">
-        {{ message }}
-    </div>
-    {% endfor %}
-    {% endif %}
-    {% endwith %}
 </head>
 <body>
-
 
 <div class="container">
     <div class="row">
@@ -52,9 +42,7 @@
                             {% endif %}
                             {{ form.email.label(class="form-control-label") }}
                         </div>
-
                         <hr>
-
                         <div class="form-label-group">
                             {% if form.password.errors %}
                             {{ form.password(class_="form-control is-invalid") }}
@@ -68,7 +56,6 @@
                             {% endif %}
                             {{ form.password.label(class="form-control-label") }}
                         </div>
-
                         <div class="form-label-group">
                             {% if form.confirm_password.errors %}
                             {{ form.confirm_password(class_="form-control is-invalid") }}
@@ -83,14 +70,11 @@
                             {% endif %}
                             {{ form.confirm_password.label(class="form-control-label") }}
                         </div>
-
                         {{ form.submit(class="btn btn-lg btn-primary btn-block text-uppercase") }}
-
                         <a class="d-block text-center mt-2 small" href="#" data-toggle="modal"
                            data-target="#login-modal">
                             Already registered?
                         </a>
-
                         <hr class="my-4">
                         <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i
                                 class="fab fa-google mr-2"></i> Sign up with Google
