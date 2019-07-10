@@ -12,7 +12,10 @@ def create_app():
     Bootstrap(app)
     return app
 
+
 app = create_app()
+app.config['SECRET_KEY'] = 'TEMP'
+
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -28,17 +31,34 @@ def index():
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
+
+    loginform = LoginForm()
     form = RegistrationForm()
+
     if form.validate_on_submit():
         flash(f'Account created for {form.username.data}!', 'success')
-        return redirect(url_for('index'))
+        return redirect(url_for('blog'))
+    elif loginform.validate_on_submit():
+        if loginform.email.data == 'admin@blog.com' and loginform.password.data == 'password':
+            print("admin and password")
+            flash('You have been logged in!', 'success')
+            return redirect(url_for('blog'))
+        else:
+            flash('Login Unsuccessful. Please check username and password', 'danger')
 
-    return render_template("signup.html", title="Register", form=form)
+    return render_template("signup.html", title="Register", form=form, loginform=loginform)
 
 
-@app.route('/blog')
+@app.route('/blog', methods=['GET', 'POST'])
 def blog():
-    return render_template("blog.html")
+    loginform = LoginForm()
+    if loginform.validate_on_submit():
+        if loginform.email.data == 'admin@blog.com' and loginform.password.data == 'password':
+            flash('You have been logged in!', 'success')
+            return redirect(url_for('blog'))
+        else:
+            flash('Login Unsuccessful. Please check username and password', 'danger')
+    return render_template("blog.html", loginform=loginform)
 
 
 @app.route('/post')
@@ -51,17 +71,5 @@ def about():
     return render_template("about.html")
 
 
-# @app.route('/login')
-# def login():
-#     form = LoginForm()
-#     if form.validate_on_submit():
-#         if form.email.data == 'admin@blog.com' and form.password.data == 'password':
-#             flash(f'You have been logged in', 'success')
-#             return redirect(url_for('index'))
-#         else:
-#             flash(f'Login unsuccessful. Please check username and password', 'danger')
-#     return render_template("login.html", title="Login", form=form)
-
 if __name__ == "__main__":
-    app.run(host='0.0.0.0',port=80)
-
+    app.run(host='0.0.0.0', debug=True)

@@ -2,3 +2,5 @@ Flask
 Flask-Bootstrap
 Flask-WTF
 waitress
+WTForms
+SQLAlchemy
