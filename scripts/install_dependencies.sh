@@ -1,4 +1,4 @@
 #!/bin/bash
 
-easy_install pip
-pip install -r /home/ec2-user/requirements.txt
+sudo easy_install pip
+pip install --user -r /home/ec2-user/requirements.txt
