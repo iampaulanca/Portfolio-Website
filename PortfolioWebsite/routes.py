@@ -83,3 +83,8 @@ def about():
 def logout():
     logout_user()
     return redirect(url_for('blog'))
+
+
+@app.route('/profile')
+def profile():
+    return render_template("profile.html")

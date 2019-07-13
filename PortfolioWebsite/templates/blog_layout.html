@@ -9,6 +9,7 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'UA-143533202-1');
+
     </script>
 
     <meta charset="utf-8">
@@ -31,11 +32,11 @@
 
     {% with messages = get_flashed_messages(with_categories = true) %}
     {% if messages %}
-        {% for category, message in messages%}
-            <div class="alert alert-{{ category }}">
-                {{ message }}
-            </div>
-        {% endfor %}
+    {% for category, message in messages%}
+    <div class="alert alert-{{ category }}">
+        {{ message }}
+    </div>
+    {% endfor %}
     {% endif %}
     {% endwith %}
 
@@ -64,7 +65,10 @@
                 </li>
                 {% else %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('logout') }}" >Log Out</a>
+                    <a class="nav-link" href="{{ url_for('profile') }}">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('logout') }}">Log Out</a>
                 </li>
                 {% endif %}
             </ul>
@@ -106,6 +110,7 @@
 </footer>
 
 
+{% if not current_user.is_authenticated %}
 <!-- Modal -->
 <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -121,27 +126,27 @@
                     {{ loginform.hidden_tag() }}
                     <div class="form-group">
                         {% if loginform.email.errors %}
-                            {{ loginform.email(class_="form-control is-invalid") }}
-                            <div class="invalid-feedback">
-                                {% for error in loginform.email.errors %}
-                                <span> {{ error }} </span>
-                                {% endfor %}
-                            </div>
+                        {{ loginform.email(class_="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in loginform.email.errors %}
+                            <span> {{ error }} </span>
+                            {% endfor %}
+                        </div>
                         {% else %}
-                            {{ loginform.email(class_="form-control", autofocus=true) }}
+                        {{ loginform.email(class_="form-control", autofocus=true) }}
                         {% endif %}
                         {{ loginform.email.label() }}
                     </div>
                     <div class="form-group">
                         {% if loginform.password.errors %}
-                            {{ loginform.password(class_="form-control is-invalid") }}
-                            <div class="invalid-feedback">
-                                {% for error in loginform.password.errors %}
-                                <span> {{ error }} </span>
-                                {% endfor %}
-                            </div>
+                        {{ loginform.password(class_="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in loginform.password.errors %}
+                            <span> {{ error }} </span>
+                            {% endfor %}
+                        </div>
                         {% else %}
-                            {{ loginform.password(class_="form-control", autofocus=true) }}
+                        {{ loginform.password(class_="form-control", autofocus=true) }}
                         {% endif %}
                         {{ loginform.password.label() }}
                     </div>
@@ -164,10 +169,11 @@
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                     </div>
                 </form>
-            </div>
+            </label>
         </div>
     </div>
 </div>
+{% endif %}
 
 
 <!-- Bootstrap core JavaScript -->
