@@ -10,7 +10,7 @@ hooks:
       timeout: 120
       runas: root
   ApplicationStop:
-    - location: deregister_from_elb.sh
+    - location: scripts/deregister_from_elb.sh
       runas: root
   ApplicationStart:
     - location: scripts/start.sh
@@ -18,3 +18,4 @@ hooks:
       runas: root
     - location: scripts/register_with_elb.sh
         timeout: 120
+
