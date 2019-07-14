@@ -1,6 +1,16 @@
 from PortfolioWebsite import app
-# from waitress import serve
+from flask import request, redirect
+from waitress import serve
+
+@app.before_request
+def before_request():
+    if not request.is_secure and app.env != "development":
+        url = request.url.replace("http://", "https://", 1)
+        code = 301
+        return redirect(url, code=code)
+
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port='80', debug=False)
+    serve(app, listen='*:80')
+    # app.run(host='0.0.0.0', port='80', debug=False)
 

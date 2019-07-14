@@ -1,4 +1,4 @@
-from flask import url_for, render_template, flash, redirect
+from flask import url_for, render_template, flash, redirect, request
 from PortfolioWebsite import app, db, bcrypt
 from PortfolioWebsite.forms import RegistrationForm, LoginForm
 from PortfolioWebsite.models import User, Post
