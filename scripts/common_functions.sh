@@ -44,7 +44,7 @@ MIN_CLI_VERSION='1.3.25'
 FLAGFILE="/tmp/asg_codedeploy_flags-$DEPLOYMENT_GROUP_ID-$DEPLOYMENT_ID"
 
 # Handle ASG processes
-HANDLE_PROCS=true
+HANDLE_PROCS=false
 
 #
 # Performs CLI command and provides expotential backoff with Jitter between any failed CLI commands
@@ -342,7 +342,7 @@ autoscaling_enter_standby() {
 #   successful.
 autoscaling_exit_standby() {
     local instance_id=$1
-    local asg_name=${2}
+    local asg_name=${2} 
 
     msg "Checking if this instance has already been moved out of Standby state"
     local instance_state=$(get_instance_state_asg $instance_id)
