@@ -18,7 +18,7 @@ hooks:
       timeout: 120
       runas: root
     - location: scripts/register_with_elb.sh
-      timeout: 120
+      timeout: 180
       runas: root
 
 
