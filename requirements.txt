@@ -3,4 +3,6 @@ Flask-Bootstrap
 Flask-WTF
 waitress
 WTForms
-SQLAlchemy
+flask_sqlalchemy
+flask_login
+flask_bcrypt

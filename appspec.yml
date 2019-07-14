@@ -9,7 +9,12 @@ hooks:
     - location: scripts/install_dependencies.sh
       timeout: 120
       runas: root
+  ApplicationStop:
+    - location: deregister_from_elb.sh
+      runas: root
   ApplicationStart:
     - location: scripts/start.sh
-      timeout: 300
+      timeout: 120
       runas: root
+    - location: scripts/register_with_elb.sh
+        timeout: 120
