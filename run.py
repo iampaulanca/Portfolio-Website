@@ -2,15 +2,15 @@ from PortfolioWebsite import app
 from flask import request, redirect
 from waitress import serve
 
-@app.before_request
-def before_request():
-    if not request.is_secure and app.env != "development":
-        print(app.env)
-        url = request.url.replace("http://", "https://", 1)
-        code = 301
-        return redirect(url, code=code)
+# @app.before_request
+# def before_request():
+#     if not request.is_secure and app.env != "development":
+#         print(app.env)
+#         url = request.url.replace("http://", "https://", 1)
+#         code = 301
+#         return redirect(url, code=code)
 
 if __name__ == "__main__":
-    serve(app, host='0.0.0.0', port=80)
+    serve(app, listen='0.0.0.0:80', url_scheme='https')
     # app.run(host='0.0.0.0', port='5000', debug=True)
 
