@@ -5,6 +5,7 @@ from PortfolioWebsite.models import User, Post
 from flask_login import login_user, current_user, logout_user
 from datetime import timedelta
 
+
 @app.route('/')
 def index():
     return render_template("index.html")
@@ -16,17 +17,16 @@ def signup():
         return redirect(url_for('blog'))
 
     loginform = LoginForm()
-    form = RegistrationForm()
+    register_form = RegistrationForm()
 
-    if form.validate_on_submit():
-        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        user = User(username=form.username.data, email=form.email.data, password=hashed_password)
+    if register_form.validate_on_submit() and register_form.submit_register.data:
+        hashed_password = bcrypt.generate_password_hash(register_form.password.data).decode('utf-8')
+        user = User(username=register_form.username.data, email=register_form.email.data, password=hashed_password)
         db.session.add(user)
         db.session.commit()
         flash('Account has been created! You are now able to log in', 'success')
         return redirect(url_for('blog'))
-
-    if loginform.validate_on_submit():
+    elif loginform.validate_on_submit() and loginform.submit.data:
         user = User.query.filter_by(email=loginform.email.data).first()
         if user and bcrypt.check_password_hash(user.password, loginform.password.data):
             login_user(user, remember=loginform.remember.data, duration=timedelta(seconds=20))
@@ -34,8 +34,9 @@ def signup():
             return redirect(url_for('post'))
         else:
             flash('Login Unsuccessful. Please check email and password', 'danger')
+            register_form.email.data = ""
 
-    return render_template("signup.html", title="Register", form=form, loginform=loginform)
+    return render_template("signup.html", title="Register", register_form=register_form, loginform=loginform)
 
 
 @app.route('/blog', methods=['GET', 'POST'])
@@ -78,6 +79,7 @@ def about():
         else:
             flash('Login Unsuccessful. Please check email and password', 'danger')
     return render_template("about.html", loginform=loginform)
+
 
 @app.route('/logout')
 def logout():

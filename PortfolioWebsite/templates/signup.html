@@ -43,62 +43,62 @@
                 <div class="card-body">
                     <h5 class="card-title text-center">Register</h5>
                     <form class="form-signin" method="POST" action="">
-                        {{ form.hidden_tag() }}
+                        {{ register_form.hidden_tag() }}
                         <div class="form-label-group">
-                            {% if form.username.errors %}
-                            {{ form.username(class_="form-control is-invalid") }}
+                            {% if register_form.username.errors %}
+                            {{ register_form.username(class_="form-control is-invalid") }}
                             <div class="invalid-feedback">
-                                {% for error in form.username.errors %}
+                                {% for error in register_form.username.errors %}
                                 <span> {{ error }} </span>
                                 {% endfor %}
                             </div>
                             {% else %}
-                            {{ form.username(class_="form-control", autofocus=true, placeholder="Username") }}
+                            {{ register_form.username(class_="form-control", autofocus=true, placeholder="Username") }}
                             {% endif %}
-                            {{ form.username.label() }}
+                            {{ register_form.username.label() }}
                         </div>
                         <div class="form-label-group">
-                            {% if form.email.errors %}
-                            {{ form.email(class_="form-control is-invalid") }}
+                            {% if register_form.email.errors %}
+                            {{ register_form.email(class_="form-control is-invalid") }}
                             <div class="invalid-feedback">
-                                {% for error in form.email.errors %}
+                                {% for error in register_form.email.errors %}
                                 <span> {{ error }} </span>
                                 {% endfor %}
                             </div>
                             {% else %}
-                            {{ form.email(class_="form-control", autofocus=true, placeholder="Email") }}
+                            {{ register_form.email(class_="form-control", autofocus=true, placeholder="Email") }}
                             {% endif %}
-                            {{ form.email.label(class="form-control-label") }}
+                            {{ register_form.email.label(class="form-control-label") }}
                         </div>
                         <hr>
                         <div class="form-label-group">
-                            {% if form.password.errors %}
-                            {{ form.password(class_="form-control is-invalid") }}
+                            {% if register_form.password.errors %}
+                            {{ register_form.password(class_="form-control is-invalid") }}
                             <div class="invalid-feedback">
-                                {% for error in form.password.errors %}
+                                {% for error in register_form.password.errors %}
                                 <span> {{ error }} </span>
                                 {% endfor %}
                             </div>
                             {% else %}
-                            {{ form.password(class_="form-control", autofocus=true, placeholder="Password") }}
+                            {{ register_form.password(class_="form-control", autofocus=true, placeholder="Password") }}
                             {% endif %}
-                            {{ form.password.label(class="form-control-label") }}
+                            {{ register_form.password.label(class="form-control-label") }}
                         </div>
                         <div class="form-label-group">
-                            {% if form.confirm_password.errors %}
-                            {{ form.confirm_password(class_="form-control is-invalid") }}
+                            {% if register_form.confirm_password.errors %}
+                            {{ register_form.confirm_password(class_="form-control is-invalid") }}
                             <div class="invalid-feedback">
-                                {% for error in form.confirm_password.errors %}
+                                {% for error in register_form.confirm_password.errors %}
                                 <span> {{ error }} </span>
                                 {% endfor %}
                             </div>
                             {% else %}
-                            {{ form.confirm_password(class_="form-control", autofocus=true, placeholder="Confirm
+                            {{ register_form.confirm_password(class_="form-control", autofocus=true, placeholder="Confirm
                             Password") }}
                             {% endif %}
-                            {{ form.confirm_password.label(class="form-control-label") }}
+                            {{ register_form.confirm_password.label(class="form-control-label") }}
                         </div>
-                        {{ form.submit_register(class="btn btn-lg btn-primary btn-block text-uppercase") }}
+                        {{ register_form.submit_register(class="btn btn-lg btn-primary btn-block text-uppercase") }}
                         <a class="d-block text-center mt-2 small" href="#" data-toggle="modal"
                            data-target="#login-modal">
                             Already registered?
