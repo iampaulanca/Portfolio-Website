@@ -1,4 +1,2 @@
 # IDEA config files
 .idea/
-*config.py
-*.db
