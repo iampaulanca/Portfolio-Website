@@ -89,4 +89,7 @@ def logout():
 
 @app.route('/profile')
 def profile():
+    if not current_user.is_authenticated:
+        return redirect(url_for('blog'))
+
     return render_template("profile.html")
