@@ -75,7 +75,7 @@ def login():
             login_user(user, remember=loginform.remember.data)
             next_page = request.args.get('next')
             flash('You have been logged in!', 'success')
-            return redirect(next_page or url_for(request.url_rule.endpoint))
+            return redirect(next_page)if next_page else redirect(url_for(request.url_rule.endpoint))
         else:
             flash('Login Unsuccessful. Please check email and password', 'danger')
     return loginform
