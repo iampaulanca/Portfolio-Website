@@ -2,7 +2,7 @@ from flask import url_for, render_template, flash, redirect, request
 from PortfolioWebsite import app, db, bcrypt
 from PortfolioWebsite.forms import RegistrationForm, LoginForm
 from PortfolioWebsite.models import User, Post
-from flask_login import login_user, current_user, logout_user
+from flask_login import login_user, current_user, logout_user, login_required
 from datetime import timedelta
 
 
@@ -35,50 +35,24 @@ def signup():
         else:
             flash('Login Unsuccessful. Please check email and password', 'danger')
             register_form.email.data = ""
-
-    return render_template("signup.html", title="Register", register_form=register_form, loginform=loginform)
+            return redirect(url_for('signup'))
+    else:
+        return render_template("signup.html", title="Register", register_form=register_form, loginform=loginform)
 
 
 @app.route('/blog', methods=['GET', 'POST'])
 def blog():
-    loginform = LoginForm()
-    if loginform.validate_on_submit():
-        user = User.query.filter_by(email=loginform.email.data).first()
-        if user and bcrypt.check_password_hash(user.password, loginform.password.data):
-            login_user(user, remember=loginform.remember.data)
-            flash('You have been logged in!', 'success')
-            return redirect(url_for('post'))
-        else:
-            flash('Login Unsuccessful. Please check email and password', 'danger')
-    return render_template("blog.html", loginform=loginform)
+    return render_template("blog.html", loginform=login())
 
 
 @app.route('/post', methods=['GET', 'POST'])
 def post():
-    loginform = LoginForm()
-    if loginform.validate_on_submit():
-        user = User.query.filter_by(email=loginform.email.data).first()
-        if user and bcrypt.check_password_hash(user.password, loginform.password.data):
-            login_user(user, remember=loginform.remember.data)
-            flash('You have been logged in!', 'success')
-            return redirect(url_for('post'))
-        else:
-            flash('Login Unsuccessful. Please check email and password', 'danger')
-    return render_template("post.html", loginform=loginform)
+    return render_template("post.html", loginform=login())
 
 
 @app.route('/about', methods=['GET', 'POST'])
 def about():
-    loginform = LoginForm()
-    if loginform.validate_on_submit():
-        user = User.query.filter_by(email=loginform.email.data).first()
-        if user and bcrypt.check_password_hash(user.password, loginform.password.data):
-            login_user(user, remember=loginform.remember.data)
-            flash('You have been logged in!', 'success')
-            return redirect(url_for('post'))
-        else:
-            flash('Login Unsuccessful. Please check email and password', 'danger')
-    return render_template("about.html", loginform=loginform)
+    return render_template("about.html", loginform=login())
 
 
 @app.route('/logout')
@@ -88,8 +62,21 @@ def logout():
 
 
 @app.route('/profile')
+@login_required
 def profile():
-    if not current_user.is_authenticated:
-        return redirect(url_for('blog'))
+    return render_template("profile.html", title='Profile')
 
-    return render_template("profile.html")
+
+def login():
+    loginform = LoginForm()
+    if loginform.validate_on_submit() and loginform.submit.data:
+        user = User.query.filter_by(email=loginform.email.data).first()
+        if user and bcrypt.check_password_hash(user.password, loginform.password.data):
+            login_user(user, remember=loginform.remember.data)
+            next_page = request.args.get('next')
+            flash('You have been logged in!', 'success')
+            return redirect(next_page or url_for(request.url_rule.endpoint))
+        else:
+            flash('Login Unsuccessful. Please check email and password', 'danger')
+    return loginform
+

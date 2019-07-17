@@ -10,9 +10,6 @@
       gtag('js', new Date());
       gtag('config', 'UA-143533202-1');
 
-
-
-
     </script>
 
     <meta charset="utf-8">
@@ -32,16 +29,16 @@
 
     <!-- Custom styles for this template -->
     <link href="{{ url_for('static', filename='css/clean-blog.css') }}" rel="stylesheet">
-
     {% with messages = get_flashed_messages(with_categories = true) %}
     {% if messages %}
     {% for category, message in messages%}
-    <div class="alert alert-{{ category }}">
+    <div class="alert alert-{{ category }}" style="margin:0px">
         {{ message }}
     </div>
     {% endfor %}
     {% endif %}
     {% endwith %}
+
 
 </head>
 
@@ -84,7 +81,6 @@
         </div>
     </div>
 </nav>
-
 {% block content %} {% endblock content %}
 
 <hr>
@@ -131,15 +127,15 @@
                 </button>
             </div>
             <label class="modal-body">
-                <form method="POST" action="">
+                <form method="POST">
                     {{ loginform.hidden_tag() }}
                     <div class="form-group">
                         {% if loginform.email.errors %}
                         {{ loginform.email(class_="form-control is-invalid") }}
                         <div class="invalid-feedback">
-                            {% for error in loginform.email.errors %}
+                            <!--{% for error in loginform.email.errors %}-->
                             <span> {{ error }} </span>
-                            {% endfor %}
+                            <!--{% endfor %}-->
                         </div>
                         {% else %}
                         {{ loginform.email(class_="form-control", autofocus=true) }}
