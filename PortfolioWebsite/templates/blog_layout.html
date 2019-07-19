@@ -63,10 +63,10 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('about') }}">About</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('index') }}">Resume</a>
-                </li>
                 {% if not current_user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('index') }}">My resume</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#" data-toggle="modal" data-target="#login-modal">Log In</a>
                 </li>
@@ -75,9 +75,13 @@
                     <a class="nav-link" href="{{ url_for('profile') }}">Profile</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('index') }}">My resume</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('logout') }}">Log Out</a>
                 </li>
                 {% endif %}
+
             </ul>
         </div>
     </div>
