@@ -10,6 +10,12 @@
       gtag('js', new Date());
       gtag('config', 'UA-143533202-1');
 
+
+
+
+
+
+
     </script>
 
     <meta charset="utf-8">
@@ -53,18 +59,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('index') }}">Resume</a>
                     </li>
-                    {% if not current_user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" data-toggle="modal" data-target="#login-modal">Log In</a>
-                    </li>
-                    {% else %}
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('profile') }}">Profile</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('logout') }}">Log Out</a>
                     </li>
-                    {% endif %}
                 </ul>
             </div>
         </div>
@@ -75,15 +75,18 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-3 center">
 							<span class="profile-picture">
-								<img class="editable img-responsive" alt=" Avatar" id="avatar2"
-                                     src="http://bootdey.com/img/Content/avatar/avatar6.png">
+								<img class="img-fluid img-profile mx-auto mb-2" src="{{ image_file }}">
 							</span>
 
                     <div class="space space-4"></div>
 
-                    <a href="#" class="btn btn-sm btn-block btn-primary">
+                    <a href="#" class="btn btn-sm btn-block btn-primary" style="margin-top:10px">
                         <i class="ace-icon fa fa-envelope-o bigger-110"></i>
-                        <span class="bigger-110">Send an email</span>
+                        <span class="bigger-110">Contact</span>
+                    </a>
+
+                    <a href="#" class="btn btn-sm btn-block btn-primary" style="margin-top:10px" data-toggle="modal" data-target="#login-modal">
+                        <span class="bigger-110">Edit profile</span>
                     </a>
                 </div><!-- /.col -->
 
@@ -116,17 +119,16 @@
             <div class="space-20"></div>
 
             <div class="row">
-                <div class="col-xs-12 col-sm-6">
+                <div class="col-xs-9 col-sm-6">
                     <div class="widget-box transparent">
-                        <div class="widget-header widget-header-small">
+                        <div class="widget-header widget-header-small" style="margin-top:20px">
                             <h4 class="widget-title smaller">
-                                <i class="ace-icon fa fa-check-square-o bigger-110"></i>
                                 About user header
                             </h4>
                         </div>
 
                         <div class="widget-body">
-                            <div class="widget-main">
+                            <div class="widget-main space space-4">
                                 <p>
                                     About user info
                                 </p>
@@ -134,10 +136,64 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="col-xs-3 col-sm-6">
+                    <div class="widget-box transparent">
+
+
+                    </div>
+                </div>
+
             </div>
         </div><!-- /#home -->
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Sign in to post</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <label class="modal-body">
+                <form method="POST" action="{{ url_for('login') }}">
+                    {{ update_form.hidden_tag() }}
+                    <div class="form-group">
+                        {% if update_form.email.errors %}
+                        {{ update_form.email(class_="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            <!--{% for error in update_form.email.errors %}-->
+                            <span> {{ error }} </span>
+                            <!--{% endfor %}-->
+                        </div>
+                        {% else %}
+                        {{ update_form.email(class_="form-control", autofocus=true) }}
+                        {% endif %}
+                        {{ update_form.email.label() }}
+                    </div>
+                    <div class="modal-footer">
+                        {{ update_form.submit_update(class="btn btn-primary") }}
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </label>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript -->
+<script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js')}}"></script>
+<script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+
+<!-- Plugin JavaScript -->
+<script src="{{ url_for('static', filename='vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+
+<!-- Custom scripts for this template -->
+<script src="{{ url_for('static', filename='js/clean-blog.min.js' )}}"></script>
 
 </body>
 </html>
