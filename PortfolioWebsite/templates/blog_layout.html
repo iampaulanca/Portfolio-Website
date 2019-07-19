@@ -29,6 +29,7 @@
 
     <!-- Custom styles for this template -->
     <link href="{{ url_for('static', filename='css/clean-blog.css') }}" rel="stylesheet">
+
     {% with messages = get_flashed_messages(with_categories = true) %}
     {% if messages %}
     <!--{% for category, message in messages%}-->

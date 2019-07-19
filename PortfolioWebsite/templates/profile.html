@@ -10,7 +10,6 @@
       gtag('js', new Date());
       gtag('config', 'UA-143533202-1');
 
-
     </script>
 
     <meta charset="utf-8">
@@ -18,7 +17,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Paul's Blog</title>
+    <title>Paul's Blog Project</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -28,121 +27,132 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
           rel='stylesheet' type='text/css'>
 
+
     <!-- Custom styles for this template -->
     <link href="{{ url_for('static', filename='css/profile.css') }}" rel="stylesheet">
+    {% with messages = get_flashed_messages(with_categories = true) %}
+    {% if messages %}
+    <!--{% for category, message in messages%}-->
+    <div class="alert alert-{{ category }}" style="margin:0px">
+        {{ message }}
+    </div>
+    <!--{% endfor %}-->
+    {% endif %}
+    {% endwith %}
 </head>
+
+<header></header>
+
 <body style="background-color:#607397">
 
-<div id="user-profile-2" class="user-profile">
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-        <div class="container">
-            <button class="navbar-toggler navbar-toggler-right ml-auto" type="button" data-toggle="collapse"
-                    data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                Menu
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('blog') }}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('about') }}">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('index') }}">Resume</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('profile') }}">Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('logout') }}">Log Out</a>
-                    </li>
-                </ul>
-            </div>
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+        <button class="navbar-toggler navbar-toggler-right ml-auto" type="button" data-toggle="collapse"
+                data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                aria-label="Toggle navigation">
+            Menu
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('blog') }}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('about') }}">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('index') }}">Resume</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('profile') }}">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('logout') }}">Log Out</a>
+                </li>
+            </ul>
         </div>
-    </nav>
+    </div>
 
-    <div class="tab-content no-border padding-24">
-        <div id="home" class="tab-pane in active">
-            <div class="row">
-                <div class="col-xs-12 col-sm-3 center">
+</nav>
+
+<div class="tab-content no-border padding-24">
+    <div id="home" class="tab-pane in active">
+        <div class="row">
+            <div class="col-xs-12 col-sm-3 center">
                     <span class="profile-picture">
                         <img class="img-fluid img-profile mx-auto mb-2" src="{{ image_file }}">
                     </span>
 
-                    <div class="space space-4"></div>
+                <div class="space space-4"></div>
 
-                    <a href="#" class="btn btn-sm btn-block btn-primary" style="margin-top:10px">
-                        <i class="ace-icon fa fa-envelope-o bigger-110"></i>
-                        <span class="bigger-110">Contact</span>
-                    </a>
+                <a href="#" class="btn btn-sm btn-block btn-primary" style="margin-top:10px">
+                    <i class="ace-icon fa fa-envelope-o bigger-110"></i>
+                    <span class="bigger-110">Contact</span>
+                </a>
 
-                    <a href="#" class="btn btn-sm btn-block btn-primary" style="margin-top:10px" data-toggle="modal"
-                       data-target="#login-modal">
-                        <span class="bigger-110">Edit profile</span>
-                    </a>
-                </div><!-- /.col -->
+                <a href="#" class="btn btn-sm btn-block btn-primary" style="margin-top:10px" data-toggle="modal"
+                   data-target="#login-modal">
+                    <span class="bigger-110">Edit profile</span>
+                </a>
+            </div><!-- /.col -->
 
-                <div class="col-xs-12 col-sm-9">
-                    <h4 class="white">
+            <div class="col-xs-12 col-sm-9">
+                <h4 class="white">
                         <span class="middle">
                             {{ current_user.email }}
                         </span>
-                    </h4>
+                </h4>
 
-                    <div class="profile-user-info">
-                        <div class="profile-info-row">
-                            <div class="profile-info-name"> Username</div>
-                            <div class="profile-info-value">
-                                <span>{{ current_user.username }}</span>
-                            </div>
-                        </div>
-
-                        <div class="profile-info-row">
-                            <div class="profile-info-name"> Joined</div>
-                            <div class="profile-info-value">
-                                <span>2010/06/20</span>
-                            </div>
+                <div class="profile-user-info">
+                    <div class="profile-info-row">
+                        <div class="profile-info-name"> Username</div>
+                        <div class="profile-info-value">
+                            <span>{{ current_user.username }}</span>
                         </div>
                     </div>
 
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-
-            <div class="space-20"></div>
-
-            <div class="row">
-                <div class="col-xs-9 col-sm-6">
-                    <div class="widget-box transparent">
-                        <div class="widget-header widget-header-small" style="margin-top:20px">
-                            <h4 class="widget-title smaller">
-                                About user header
-                            </h4>
-                        </div>
-
-                        <div class="widget-body">
-                            <div class="widget-main space space-4">
-                                <p>
-                                    About user info
-                                </p>
-                            </div>
+                    <div class="profile-info-row">
+                        <div class="profile-info-name"> Joined</div>
+                        <div class="profile-info-value">
+                            <span>2010/06/20</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-xs-3 col-sm-6">
-                    <div class="widget-box transparent">
+            </div><!-- /.col -->
+        </div><!-- /.row -->
 
+        <div class="space-20"></div>
 
+        <div class="row">
+            <div class="col-xs-9 col-sm-6">
+                <div class="widget-box transparent">
+                    <div class="widget-header widget-header-small" style="margin-top:20px">
+                        <h4 class="widget-title smaller">
+                            About user header
+                        </h4>
+                    </div>
+
+                    <div class="widget-body">
+                        <div class="widget-main space space-4">
+                            <p>
+                                About user info
+                            </p>
+                        </div>
                     </div>
                 </div>
-
             </div>
-        </div><!-- /#home -->
-    </div>
+
+            <div class="col-xs-3 col-sm-9 center">
+                <div class="widget-box transparent">
+                    <!--PUT STUFF IN HERE-->
+                </div>
+            </div>
+
+        </div>
+    </div><!-- /#home -->
 </div>
 
 <!-- Modal -->
@@ -150,27 +160,50 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Sign in to post</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Edit profile</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <label class="modal-body">
-                <form method="POST" action="{{ url_for('login') }}">
+                <form method="POST" action="{{ url_for('profile') }}" enctype="multipart/form-data">
                     {{ update_form.hidden_tag() }}
+                    <div class="form-group">
+                        {% if update_form.username.errors %}
+                        {{ update_form.username(class_="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in update_form.username.errors %}
+                            <span> {{ error }} </span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ update_form.username(class_="form-control", autofocus=true) }}
+                        {% endif %}
+                        {{ update_form.username.label() }}
+                    </div>
                     <div class="form-group">
                         {% if update_form.email.errors %}
                         {{ update_form.email(class_="form-control is-invalid") }}
                         <div class="invalid-feedback">
-                            <!--{% for error in update_form.email.errors %}-->
+                            {% for error in update_form.email.errors %}
                             <span> {{ error }} </span>
-                            <!--{% endfor %}-->
+                            {% endfor %}
                         </div>
                         {% else %}
                         {{ update_form.email(class_="form-control", autofocus=true) }}
                         {% endif %}
                         {{ update_form.email.label() }}
                     </div>
+                    <div class="form-group">
+                        {{ update_form.picture.label() }}
+                        {{ update_form.picture(class="form-control-file") }}
+                        {% if update_form.picture.errors %}
+                        {% for error in update_form.picture.errors %}
+                        <span class="text-danger"> {{ error }} </span><br>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+
                     <div class="modal-footer">
                         {{ update_form.submit_update(class="btn btn-primary") }}
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
@@ -190,6 +223,19 @@
 
 <!-- Custom scripts for this template -->
 <script src="{{ url_for('static', filename='js/clean-blog.min.js' )}}"></script>
+
+<script>
+var formErrors = {% if update_form.errors %}true {% else %} false {% endif %};
+console.log(formErrors)
+
+$(document).ready(function() {
+    if (formErrors) {
+        $('#login-modal').modal('show');
+    }
+});
+
+
+</script>
 
 </body>
 </html>

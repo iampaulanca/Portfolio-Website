@@ -1,3 +1,6 @@
+import secrets
+import os
+from PIL import Image
 from flask import url_for, render_template, flash, redirect, request
 from PortfolioWebsite import app, db, bcrypt
 from PortfolioWebsite.forms import RegistrationForm, LoginForm, UpdateAccountForm
@@ -61,12 +64,44 @@ def logout():
     return redirect(url_for('blog'))
 
 
-@app.route('/profile')
+def save_picture(form_picture):
+    # random hex so there are no duplicate names
+    random_hex = secrets.token_hex(8)
+    # os.path.splitext spits the extension from the file name
+    _f_name, f_ext = os.path.splitext(form_picture.filename)
+    # add the hex to the filename to avoid duplicate file names
+    picture_fn = random_hex + f_ext
+    # get the path to where we want to save the picture
+    picture_path = os.path.join(app.root_path, 'static/img', picture_fn)
+    # choose a size for the image thumb and use PILLOW module to resize
+    output_size = (275, 275)
+    i = Image.open(form_picture)
+    i.thumbnail(output_size)
+    rgb_i = i.convert('RGB')
+    # save the new resized picture in the picture_path
+    rgb_i.save(picture_path)
+    # return the path because want to update the current picture with the picture in the file path
+    return picture_fn
+
+
+@app.route('/profile', methods=['GET', 'POST'])
 @login_required
 def profile():
-    image_file = url_for('static', filename='img/' + current_user.image_file )
     update_form = UpdateAccountForm()
-    return render_template("profile.html", title='Profile', image_file=image_file, update_form=update_form)
+    if update_form.validate_on_submit():
+        if update_form.picture.data:
+            picture_file = save_picture(update_form.picture.data)
+            current_user.image_file = picture_file
+        current_user.username = update_form.username.data
+        current_user.email = update_form.email.data
+        db.session.commit()
+        flash('Profile has been updated!', 'success')
+        return redirect(url_for('profile'))
+    elif request.method == 'GET':
+        update_form.username.data = current_user.username
+        update_form.email.data = current_user.email
+    image_file = url_for('static', filename='img/' + current_user.image_file)
+    return render_template("profile.html", title='Profile', image_file="static/img/default.jpg", update_form=update_form)
 
 
 @app.route('/login', methods=['GET', 'POST'])

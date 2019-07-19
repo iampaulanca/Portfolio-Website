@@ -1,8 +1,0 @@
-Flask
-Flask-Bootstrap
-Flask-WTF
-waitress
-WTForms
-flask_sqlalchemy
-flask_login
-flask_bcrypt
