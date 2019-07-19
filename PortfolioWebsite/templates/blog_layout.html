@@ -31,11 +31,11 @@
     <link href="{{ url_for('static', filename='css/clean-blog.css') }}" rel="stylesheet">
     {% with messages = get_flashed_messages(with_categories = true) %}
     {% if messages %}
-    {% for category, message in messages%}
+    <!--{% for category, message in messages%}-->
     <div class="alert alert-{{ category }}" style="margin:0px">
         {{ message }}
     </div>
-    {% endfor %}
+    <!--{% endfor %}-->
     {% endif %}
     {% endwith %}
 
@@ -114,7 +114,7 @@
     </div>
 </footer>
 
-
+{% if not current_user.is_authenticated: %}
 <!-- Modal -->
 <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -126,7 +126,7 @@
                 </button>
             </div>
             <label class="modal-body">
-                <form method="POST">
+                <form method="POST" action="{{ url_for('login') }}">
                     {{ loginform.hidden_tag() }}
                     <div class="form-group">
                         {% if loginform.email.errors %}
@@ -178,7 +178,7 @@
     </div>
 </div>
 
-
+{% endif %}
 <!-- Bootstrap core JavaScript -->
 <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js')}}"></script>
 <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
