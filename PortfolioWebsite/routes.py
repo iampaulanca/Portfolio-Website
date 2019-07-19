@@ -97,9 +97,11 @@ def save_picture(form_picture):
     return picture_fn
 
 
-@app.route('/profile', methods=['GET', 'POST'])
+@app.route('/profile/<username>', methods=['GET', 'POST'])
 @login_required
-def profile():
+def profile(username):
+    profile = db.session.query(User).filter_by(username=username).first()
+    print(profile)
     update_form = UpdateAccountForm()
     if update_form.validate_on_submit():
         if update_form.picture.data:
@@ -113,8 +115,9 @@ def profile():
     elif request.method == 'GET':
         update_form.username.data = current_user.username
         update_form.email.data = current_user.email
+
     image_file = url_for('static', filename='img/' + current_user.image_file)
-    return render_template("profile.html", title='Profile', image_file=image_file, update_form=update_form)
+    return render_template("profile.html", profile=profile, title='Profile', image_file=image_file, update_form=update_form)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -129,7 +132,7 @@ def login():
             login_user(user, remember=loginform.remember.data)
             flash('You have been logged in!', 'success')
             if 'profile' in request.referrer:
-                return redirect(url_for('profile'))
+                return redirect(url_for('profile', username=current_user.username))
             return redirect(r[len(r) - 1])
     flash('Login Unsuccessful. Please check email and password', 'danger')
     if 'login' == request.endpoint:
