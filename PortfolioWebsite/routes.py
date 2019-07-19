@@ -106,8 +106,9 @@ def profile():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+
     loginform = LoginForm()
-    if loginform.validate_on_submit() and loginform.submit.data:
+    if loginform.validate_on_submit():
         user = User.query.filter_by(email=loginform.email.data).first()
         if user and bcrypt.check_password_hash(user.password, loginform.password.data):
             login_user(user, remember=loginform.remember.data)
@@ -117,4 +118,11 @@ def login():
             return redirect(url_for('blog'))
         else:
             flash('Login Unsuccessful. Please check email and password', 'danger')
+            loginform.email.data = ""
+            loginform.password.data = ""
+            return loginform
+    elif request.method == 'GET':
+        loginform.email.data = ""
+        loginform.password.data = ""
+        render_template('blog.html',loginform=loginform)
     return loginform
