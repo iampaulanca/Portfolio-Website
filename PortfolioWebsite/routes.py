@@ -18,10 +18,8 @@ def index():
 def signup():
     if current_user.is_authenticated:
         return redirect(url_for('blog'))
-
     loginform = LoginForm()
     register_form = RegistrationForm()
-
     if register_form.validate_on_submit() and register_form.submit_register.data:
         hashed_password = bcrypt.generate_password_hash(register_form.password.data).decode('utf-8')
         user = User(username=register_form.username.data, email=register_form.email.data, password=hashed_password)
@@ -43,19 +41,34 @@ def signup():
         return render_template("signup.html", title="Register", register_form=register_form, loginform=loginform)
 
 
-@app.route('/blog', methods=['GET'])
+@app.route('/blog', methods=['GET', 'POST'])
 def blog():
-    return render_template("blog.html", loginform=login())
+    if request.method == 'POST':
+        login()
+    loginform = LoginForm()
+    loginform.email.data = ""
+    loginform.password.data = ""
+    return render_template("blog.html", loginform=loginform)
 
 
 @app.route('/post', methods=['GET', 'POST'])
 def post():
-    return render_template("post.html", loginform=login())
+    if request.method == 'POST':
+        login()
+    loginform = LoginForm()
+    loginform.email.data = ""
+    loginform.password.data = ""
+    return render_template("post.html", loginform=loginform)
 
 
 @app.route('/about', methods=['GET', 'POST'])
 def about():
-    return render_template("about.html", loginform=login())
+    if request.method == 'POST':
+        login()
+    loginform = LoginForm()
+    loginform.email.data = ""
+    loginform.password.data= ""
+    return render_template("about.html", loginform=loginform)
 
 
 @app.route('/logout')
@@ -107,14 +120,21 @@ def profile():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     loginform = LoginForm()
-    if loginform.validate_on_submit() and loginform.submit.data:
+    r = request.referrer.split('/')
+    print(request.referrer, r, request.endpoint)
+
+    if loginform.validate_on_submit():
         user = User.query.filter_by(email=loginform.email.data).first()
         if user and bcrypt.check_password_hash(user.password, loginform.password.data):
             login_user(user, remember=loginform.remember.data)
             flash('You have been logged in!', 'success')
             if 'profile' in request.referrer:
                 return redirect(url_for('profile'))
-            return redirect(url_for('blog'))
-        else:
-            flash('Login Unsuccessful. Please check email and password', 'danger')
-    return loginform
+            return redirect(r[len(r) - 1])
+    flash('Login Unsuccessful. Please check email and password', 'danger')
+    if 'login' == request.endpoint:
+        return redirect(r[len(r) - 1])
+    elif request == "GET":
+        loginform.email.data = ""
+        loginform.password.data = ""
+    return render_template(r[len(r)-1] + '.html', loginform=loginform)
