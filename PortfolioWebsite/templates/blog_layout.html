@@ -190,6 +190,18 @@
 <!-- Custom scripts for this template -->
 <script src="{{ url_for('static', filename='js/clean-blog.min.js' )}}"></script>
 
+<script>
+var formErrors = {% if loginform.errors %}true {% else %} false {% endif %};
+console.log(formErrors)
+
+$(document).ready(function() {
+    if (formErrors) {
+        $('#login-modal').modal('show');
+    }
+});
+</script>
+
+
 </body>
 
 </html>
