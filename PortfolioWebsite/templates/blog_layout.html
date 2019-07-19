@@ -75,6 +75,9 @@
                     <a class="nav-link" href="{{ url_for('profile', username=current_user.username) }}">Profile</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('new_post') }}">New Post</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('index') }}">My resume</a>
                 </li>
                 <li class="nav-item">
@@ -183,6 +186,17 @@
     </div>
 </div>
 
+<script>
+var formErrors = {% if loginform.errors %}true {% else %} false {% endif %};
+console.log(formErrors)
+
+$(document).ready(function() {
+    if (formErrors) {
+        $('#login-modal').modal('show');
+    }
+});
+</script>
+
 {% endif %}
 <!-- Bootstrap core JavaScript -->
 <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js')}}"></script>
@@ -194,16 +208,7 @@
 <!-- Custom scripts for this template -->
 <script src="{{ url_for('static', filename='js/clean-blog.min.js' )}}"></script>
 
-<script>
-var formErrors = {% if loginform.errors %}true {% else %} false {% endif %};
-console.log(formErrors)
 
-$(document).ready(function() {
-    if (formErrors) {
-        $('#login-modal').modal('show');
-    }
-});
-</script>
 
 
 </body>

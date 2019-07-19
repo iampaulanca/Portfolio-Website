@@ -1,0 +1,30 @@
+{% extends "blog_layout.html" %}
+
+{% block header %}
+<!-- Page Header -->
+<header class="masthead" style="height:50px;">
+    <div class="overlay"></div>
+
+</header>
+{% endblock header %}
+
+{% block content %}
+<!-- POST TEXT AREA -->
+<div class="container">
+    <div class="card" style="margin-top:20; text-align:center">
+        <h6 class="card-header">Title</h6>
+        <div class="card-body">
+            <form>
+                <div class="form-group">
+                    <textarea class="form-control" rows="1"></textarea>
+                </div>
+                <h6 class="card-header">Content</h6>
+                <div class="form-group">
+                    <textarea class="form-control" rows="6" placeholder=""></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Post</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

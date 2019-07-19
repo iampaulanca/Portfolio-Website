@@ -141,3 +141,9 @@ def login():
         loginform.email.data = ""
         loginform.password.data = ""
     return render_template(r[len(r)-1] + '.html', loginform=loginform)
+
+@app.route('/home/new', methods=['GET', 'POST'])
+def new_post():
+    # form = PostForm()
+    return render_template("create_post.html")
+
