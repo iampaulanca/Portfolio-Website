@@ -101,7 +101,7 @@ def profile():
         update_form.username.data = current_user.username
         update_form.email.data = current_user.email
     image_file = url_for('static', filename='img/' + current_user.image_file)
-    return render_template("profile.html", title='Profile', image_file="static/img/default.jpg", update_form=update_form)
+    return render_template("profile.html", title='Profile', image_file=image_file, update_form=update_form)
 
 
 @app.route('/login', methods=['GET', 'POST'])
