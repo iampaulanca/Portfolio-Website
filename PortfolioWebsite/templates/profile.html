@@ -9,7 +9,6 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'UA-143533202-1');
-
     </script>
 
     <meta charset="utf-8">
@@ -97,18 +96,14 @@
                     <span class="bigger-110">Edit profile</span>
                 </a>
                 {% endif %}
-
-            </div><!-- /.col -->
-
-            <div class="col-xs-12 col-sm-9">
-                <h4 class="white">
+                <h4 class="white" style="margin-top:10px">
                     <span class="middle">
                         {{ profile.email }}
                     </span>
                 </h4>
                 <div class="profile-user-info">
                     <div class="profile-info-row">
-                        <div class="profile-info-name"> Username</div>
+                        <div class="profile-info-name" style="margin-top:10px"> Username</div>
                         <div class="profile-info-value">
                             <span>{{ profile.username }}</span>
                         </div>
@@ -120,8 +115,12 @@
                         </div>
                     </div>
                 </div>
-
             </div><!-- /.col -->
+
+            <div class="col-xs-12 col-sm-9">
+                <center>List all users blog post</center>
+            </div><!-- /.col -->
+
         </div><!-- /.row -->
     </div>
 </div><!-- /#home -->
@@ -205,6 +204,7 @@ $(document).ready(function() {
         $('#login-modal').modal('show');
     }
 });
+
 
 
 

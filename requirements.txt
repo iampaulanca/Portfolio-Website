@@ -9,3 +9,4 @@ flask_bcrypt
 Pillow
 Flask-Migrate
 Flask-Script
+mysqlclient
