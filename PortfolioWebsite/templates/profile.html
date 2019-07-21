@@ -10,7 +10,6 @@
       gtag('js', new Date());
       gtag('config', 'UA-143533202-1');
 
-
     </script>
 
     <meta charset="utf-8">
@@ -92,23 +91,26 @@
                     <i class="ace-icon fa fa-envelope-o bigger-110"></i>
                     <span class="bigger-110">Contact</span>
                 </a>
+                {% if current_user.username == request.view_args['username'] %}
                 <a href="#" class="btn btn-sm btn-block btn-primary" style="margin-top:10px" data-toggle="modal"
                    data-target="#login-modal">
                     <span class="bigger-110">Edit profile</span>
                 </a>
+                {% endif %}
+
             </div><!-- /.col -->
 
             <div class="col-xs-12 col-sm-9">
                 <h4 class="white">
                     <span class="middle">
-                        {{ current_user.email }}
+                        {{ profile.email }}
                     </span>
                 </h4>
                 <div class="profile-user-info">
                     <div class="profile-info-row">
                         <div class="profile-info-name"> Username</div>
                         <div class="profile-info-value">
-                            <span>{{ current_user.username }}</span>
+                            <span>{{ profile.username }}</span>
                         </div>
                     </div>
                     <div class="profile-info-row">
@@ -118,22 +120,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- POST TEXT AREA -->
-                <div class="card center" style="margin-top:20px">
-                    <h6 class="card-header">Title:</h6>
-                    <div class="card-body">
-                        <form>
-                            <div class="form-group">
-                                <textarea class="form-control" rows="1"></textarea>
-                            </div>
-                            <h6 class="card-header">Content to post:</h6>
-                            <div class="form-group">
-                                <textarea class="form-control" rows="6"></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Post</button>
-                        </form>
-                    </div>
-                </div>
+
             </div><!-- /.col -->
         </div><!-- /.row -->
     </div>
@@ -218,6 +205,7 @@ $(document).ready(function() {
         $('#login-modal').modal('show');
     }
 });
+
 
 
 

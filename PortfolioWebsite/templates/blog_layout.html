@@ -167,11 +167,13 @@
                         {{ loginform.remember.label(class="checkbox") }}
                     </small>
                     <div class="modal-footer">
+                        {% if not 'signup' in request.url %}
                         <small class="mr-auto" style="font-size:small">
                             <a href="{{ url_for('signup') }}">
                                 Sign Up
                             </a>
                         </small>
+                        {% endif %}
                         <small class="mr-auto" style="font-size:small">
                             <a href="/forgotpassword">
                                 Forgot Password?
@@ -207,9 +209,6 @@ $(document).ready(function() {
 
 <!-- Custom scripts for this template -->
 <script src="{{ url_for('static', filename='js/clean-blog.min.js' )}}"></script>
-
-
-
 
 </body>
 
