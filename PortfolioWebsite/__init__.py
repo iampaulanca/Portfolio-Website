@@ -8,8 +8,8 @@ import os
 from datetime import timedelta
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['SQLALCHEMY_DATABASE_URI']
+app.config['SECRET_KEY'] = "TEMP"
+app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://root:Plau041987@localhost/portfolio_development"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)

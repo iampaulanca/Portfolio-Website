@@ -116,7 +116,7 @@
                     <div class="profile-info-row">
                         <div class="profile-info-name"> Joined</div>
                         <div class="profile-info-value">
-                            <span>2010/06/20</span>
+                            {{ profile.date_joined.strftime('%B %d, %Y') }}
                         </div>
                     </div>
                 </div>
