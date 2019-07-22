@@ -200,4 +200,9 @@ def login():
 
 @app.route('/post/4159882366')
 def first_post():
-    return render_template('first_post.html')
+    if request.method == 'POST':
+        login()
+    loginform = LoginForm()
+    loginform.email.data = ""
+    loginform.password.data = ""
+    return render_template('first_post.html', loginform=loginform)
