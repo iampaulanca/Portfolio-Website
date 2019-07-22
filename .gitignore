@@ -4,3 +4,5 @@ __pycache__/
 # IDEA config files
 .idea/
 *.db
+
+config.json

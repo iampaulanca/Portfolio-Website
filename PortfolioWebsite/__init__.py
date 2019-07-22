@@ -4,12 +4,15 @@ from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
-import os
-from datetime import timedelta
+
+import json
+with open('config.json') as config_file:
+    config = json.load(config_file)
+
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = "TEMP"
-app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://root:Plau041987@localhost/portfolio_development"
+app.config['SECRET_KEY'] = config.get('SECRET_KEY')
+app.config['SQLALCHEMY_DATABASE_URI'] = config.get('DB_URI')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
