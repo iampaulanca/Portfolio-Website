@@ -1,0 +1,68 @@
+{% extends "blog_layout.html" %}
+
+{% block header %}
+<!-- Page Header -->
+<header class="masthead" style="height:50px;">
+    <div class="overlay">
+    </div>
+</header>
+{% endblock header %}
+
+{% block content %}
+<!-- POST TEXT AREA -->
+<center><h3>{{ legend }}</h3></center>
+
+<div class="container" style="padding:30px">
+    <form method="POST" action="">
+        <div class="card" style="margin-top:20;">
+            <div class="card-body">
+                {{ post_form.hidden_tag() }}
+
+                <h6 class="card-header">Title</h6>
+                <div class="form-group">
+                    {% if post_form.title.errors %}
+                    {{ post_form.title(class_="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in post_form.title.errors %}
+                        <span> {{ error }} </span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ post_form.title(class_="form-control", autofocus=true) }}
+                    {% endif %}
+                </div>
+
+                <h6 class="card-header">Subtitle</h6>
+                <div class="form-group">
+                    {% if post_form.subtitle.errors %}
+                    {{ post_form.subtitle(class_="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in post_form.subtitle.errors %}
+                        <span> {{ error }} </span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ post_form.subtitle(class_="form-control", autofocus=true) }}
+                    {% endif %}
+                </div>
+
+                <h6 class="card-header">Content</h6>
+                <div class="form-group">
+                    {% if post_form.content.errors %}
+                    {{ post_form.content(class_="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in post_form.content.errors %}
+                        <span> {{ error }} </span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ post_form.content(class_="form-control", autofocus=true, rows="8") }}
+                    {% endif %}
+                </div>
+                {{ post_form.submit_post(class="btn btn-primary") }}
+
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock content %}

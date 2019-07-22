@@ -1,0 +1,77 @@
+
+{% if not current_user.is_authenticated: %}
+<!-- Modal -->
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Sign in to post</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <label class="modal-body">
+                <form method="POST" action="{{ url_for('login') }}">
+                    {{ loginform.hidden_tag() }}
+                    <div class="form-group">
+                        {% if loginform.email.errors %}
+                        {{ loginform.email(class_="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            <!--{% for error in loginform.email.errors %}-->
+                            <span> {{ error }} </span>
+                            <!--{% endfor %}-->
+                        </div>
+                        {% else %}
+                        {{ loginform.email(class_="form-control", autofocus=true) }}
+                        {% endif %}
+                        {{ loginform.email.label() }}
+                    </div>
+                    <div class="form-group">
+                        {% if loginform.password.errors %}
+                        {{ loginform.password(class_="form-control is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in loginform.password.errors %}
+                            <span> {{ error }} </span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ loginform.password(class_="form-control", autofocus=true) }}
+                        {% endif %}
+                        {{ loginform.password.label() }}
+                    </div>
+                    <small class="text-muted ml-1" style="font-size:small">
+                        {{ loginform.remember(class="checkbox") }}
+                        {{ loginform.remember.label(class="checkbox") }}
+                    </small>
+                    <div class="modal-footer">
+                        <small class="mr-auto" style="font-size:small">
+                            <a href="{{ url_for('signup') }}">
+                                Sign Up
+                            </a>
+                        </small>
+                        <small class="mr-auto" style="font-size:small">
+                            <a href="/forgotpassword">
+                                Forgot Password?
+                            </a>
+                        </small>
+                        {{ loginform.submit(class="btn btn-primary") }}
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </label>
+        </div>
+    </div>
+</div>
+
+<script>
+var formErrors = {% if loginform.errors %}true {% else %} false {% endif %};
+console.log(formErrors)
+
+$(document).ready(function() {
+    if (formErrors) {
+        $('#login-modal').modal('show');
+    }
+});
+</script>
+
+{% endif %}
