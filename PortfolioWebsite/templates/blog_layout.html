@@ -63,21 +63,28 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('about') }}">About</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('index') }}">Resume</a>
-                </li>
                 {% if not current_user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('index') }}">My resume</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#" data-toggle="modal" data-target="#login-modal">Log In</a>
                 </li>
                 {% else %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('profile') }}">Profile</a>
+                    <a class="nav-link" href="{{ url_for('profile', username=current_user.username) }}">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('new_post') }}">New Post</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('index') }}">My resume</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('logout') }}">Log Out</a>
                 </li>
                 {% endif %}
+
             </ul>
         </div>
     </div>
@@ -160,11 +167,13 @@
                         {{ loginform.remember.label(class="checkbox") }}
                     </small>
                     <div class="modal-footer">
+                        {% if not 'signup' in request.url %}
                         <small class="mr-auto" style="font-size:small">
                             <a href="{{ url_for('signup') }}">
                                 Sign Up
                             </a>
                         </small>
+                        {% endif %}
                         <small class="mr-auto" style="font-size:small">
                             <a href="/forgotpassword">
                                 Forgot Password?
@@ -179,17 +188,6 @@
     </div>
 </div>
 
-{% endif %}
-<!-- Bootstrap core JavaScript -->
-<script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js')}}"></script>
-<script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-
-<!-- Plugin JavaScript -->
-<script src="{{ url_for('static', filename='vendor/jquery-easing/jquery.easing.min.js')}}"></script>
-
-<!-- Custom scripts for this template -->
-<script src="{{ url_for('static', filename='js/clean-blog.min.js' )}}"></script>
-
 <script>
 var formErrors = {% if loginform.errors %}true {% else %} false {% endif %};
 console.log(formErrors)
@@ -201,6 +199,16 @@ $(document).ready(function() {
 });
 </script>
 
+{% endif %}
+<!-- Bootstrap core JavaScript -->
+<script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js')}}"></script>
+<script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+
+<!-- Plugin JavaScript -->
+<script src="{{ url_for('static', filename='vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+
+<!-- Custom scripts for this template -->
+<script src="{{ url_for('static', filename='js/clean-blog.min.js' )}}"></script>
 
 </body>
 
