@@ -186,7 +186,7 @@ def login():
             flash('You have been logged in!', 'success')
             if 'profile' in request.referrer:
                 return redirect(url_for('profile', username=current_user.username))
-            if 'new' in request.referrer:
+            if '%2Fnew' in request.referrer:
                 return redirect(url_for('new_post', username=current_user.username))
             return redirect(r[len(r) - 1])
     flash('Login Unsuccessful. Please check email and password', 'danger')
