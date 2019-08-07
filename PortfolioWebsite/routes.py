@@ -32,7 +32,7 @@ def signup():
         if user and bcrypt.check_password_hash(user.password, loginform.password.data):
             login_user(user, remember=loginform.remember.data, duration=timedelta(seconds=20))
             flash('You have been logged in!', 'success')
-            return redirect(url_for('post'))
+            return redirect(url_for('blog'))
         else:
             flash('Login Unsuccessful. Please check email and password', 'danger')
             register_form.email.data = ""
@@ -57,7 +57,6 @@ def post(post_id):
     if request.method == 'POST':
         login()
     post = Post.query.get_or_404(post_id)
-    print(post)
     loginform = LoginForm()
     loginform.email.data = ""
     loginform.password.data = ""
@@ -154,7 +153,6 @@ def profile(username):
     if username == None:
         username = current_user.username
     profile = db.session.query(User).filter_by(username=username).first()
-    print(profile)
     update_form = UpdateAccountForm()
     if update_form.validate_on_submit():
         if update_form.picture.data:
@@ -168,7 +166,6 @@ def profile(username):
     elif request.method == 'GET':
         update_form.username.data = current_user.username
         update_form.email.data = current_user.email
-
     image_file = url_for('static', filename='img/' + profile.image_file)
     return render_template("profile.html", profile=profile, title='Profile', image_file=image_file,
                            update_form=update_form)
@@ -187,7 +184,7 @@ def login():
             flash('You have been logged in!', 'success')
             if 'profile' in request.referrer:
                 return redirect(url_for('profile', username=current_user.username))
-            if 'new' in request.referrer:
+            if '%2Fnew' in request.referrer:
                 return redirect(url_for('new_post', username=current_user.username))
             return redirect(r[len(r) - 1])
     flash('Login Unsuccessful. Please check email and password', 'danger')
