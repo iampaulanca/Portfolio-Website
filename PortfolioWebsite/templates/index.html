@@ -35,6 +35,7 @@
     <link rel="stylesheet"
           href="https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css">
 
+
 </head>
 
 <body id="page-top">
@@ -64,13 +65,13 @@
                 <a class="nav-link js-scroll-trigger" href="#skills">Skills</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="#interests">Interests</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link js-scroll-trigger" href="#projects">Projects</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link js-scroll-trigger" href="#awards">Certifications</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="#interests">Interests</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link my-blog" href="{{ url_for('blog') }}">My Blog</a>
@@ -89,10 +90,11 @@
             <div class="subheading mb-5"> San Francisco, CA 94134 ·
                 <a ®="mailto:name@email.com">pancajima@mail.sfsu.edu</a>
             </div>
-            <p class="lead mb-5">I have knowledge of the entire software engineering lifecycle, including best
+            <p class="lead mb-5">
+                I'm an ambitious and determined software developer with a background in computer science.
+                I also have knowledge of the entire software engineering lifecycle, including best
                 practices in regards to teamwork. I am also familiar with design processes such as Agile, SCRUM, and
-                User Centered
-                Design for providing the best user experience.
+                User Centered Design for providing the best user experience.
             </p>
             <div class="social-icons">
                 <a href="https://www.linkedin.com/in/paul-ancajima/">
@@ -110,6 +112,26 @@
     <section class="resume-section p-3 p-lg-5 d-flex align-items-centere" id="experience">
         <div class="w-100">
             <h2 class="mb-5">Experience</h2>
+
+            <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+                <div class="resume-content">
+                    <h3 class="mb-0">Software Developer Intern</h3>
+                    <div class="subheading mb-3">Kaiser Permanente Internship Program</div>
+                    <p> Developed and implemented multiple new features for an internal Kaiser Permanente iOS application using MVVM pattern and principles </p>
+                    <ul>
+                        <li>Ping - Allow users to ping servers if specific issues arise</li>
+                        <li>Notification History Log - A log of past notifications sent to the user group </li>
+                        <li>Scheduled Shutdown - Added the capability to schedule a shutdown of push notifications for chosen servers </li>
+                        <li>OAuth2.0 - Using OAuth2.0 with PKCE flow to authenticate and authorize resources to users </li>
+                        <li>Resolved network connection issues</li>
+                        <li>Learned new technologies and applications to complete necessary tasks (Swift, C#, JavaScript, Xcode, Visual Studio, MsSQL, SSMS, NodeJS, ExpressJS, PostMan)</li>
+                    </ul>
+                </div>
+                <div class="resume-date text-md-right">
+                    <span class="text-primary">October 2019, Present</span>
+                </div>
+            </div>
+
             <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
                 <div class="resume-content">
                     <h3 class="mb-0">Backend Developer</h3>
@@ -120,7 +142,7 @@
                         Although my main focus was backend, I contributed with front-end
                         development as well. Here, I was able to work with a team in-order to design,
                         create, and implement a project from scratch.</p>
-                    <p> Checkout my project at https://github.com/iampaulanca/InfiniteImage</p>
+                    <p> Checkout my projects at https://github.com/iampaulanca/InfiniteImage</p>
                 </div>
                 <div class="resume-date text-md-right">
                     <span class="text-primary">Summer Session, 2018</span>
@@ -138,6 +160,18 @@
 
             <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
                 <div class="resume-content">
+                    <h3 class="mb-0">CodePath.org</h3>
+                    <div class="subheading mb-3">iOS Development Boot Camp</div>
+                    <div>CodePath iOS Certificate of Achievement</div>
+                    <p>December 2019</p>
+                </div>
+                <div class="resume-date text-md-right">
+                    <span class="text-primary">September 2019 - December 2019</span>
+                </div>
+            </div>
+
+            <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+                <div class="resume-content">
                     <h3 class="mb-0">San Francisco State University</h3>
                     <div class="subheading mb-3">Bachelor of Science</div>
                     <div>Majored in Computer Science</div>
@@ -148,7 +182,7 @@
                 </div>
             </div>
 
-            <div class="resume-item d-flex flex-column flex-md-row justify-content-between">
+            <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
                 <div class="resume-content">
                     <h3 class="mb-0">City College of San Francisco</h3>
                     <div class="subheading mb-3">Computer Science Program</div>
@@ -159,24 +193,37 @@
                     <span class="text-primary">August 2015 - May 2017</span>
                 </div>
             </div>
+
         </div>
     </section>
 
+    <hr class="m-0">
     <hr class="m-0">
 
     <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="skills">
         <div class="w-100">
             <h2 class="mb-5">Skills</h2>
-            <div class="subheading mb-3">Programming Languages &amp; Tools</div>
+
+            <div class="subheading mb-3">Most Fluent</div>
             <ul class="list-inline dev-icons">
+                <li class="list-inline-item">
+                    <i class="devicon-swift-plain" title="Swift"></i>
+                </li>
                 <li class="list-inline-item">
                     <i class="fab fa-python" title="Python"></i>
                 </li>
                 <li class="list-inline-item">
-                    <i class="devicon-django-plain" title="Django"></i>
+                    <i class="fab fa-java" title="Java"></i>
                 </li>
                 <li class="list-inline-item">
-                    <i class="fab fa-java" title="Java"></i>
+                    <i class="devicon-mysql-plain-wordmark" title="MySQL"></i>
+                </li>
+            </ul>
+
+            <div class="subheading mb-3">Other Programming Languages &amp; Tools Used</div>
+            <ul class="list-inline dev-icons">
+                <li class="list-inline-item">
+                    <i class="devicon-django-plain" title="Django"></i>
                 </li>
                 <li class="list-inline-item">
                     <i class="fab devicon-ruby-plain" title="Ruby"></i>
@@ -185,7 +232,13 @@
                     <i class="devicon-rails-plain-wordmark" title="Ruby on Rails"></i>
                 </li>
                 <li class="list-inline-item">
-                    <i class="devicon-swift-plain" title="Swift"></i>
+                    <i class="devicon-express-original-wordmark" title="Express JS"></i>
+                </li>
+                <li class="list-inline-item">
+                    <i class="devicon-nodejs-plain-wordmark" title="Node JS"></i>
+                </li>
+                <li class="list-inline-item">
+                    <i class="devicon-javascript-plain" title="JavaScript"></i>
                 </li>
                 <li class="list-inline-item">
                     <i class="fab fa-html5" title="HTML5"></i>
@@ -194,7 +247,7 @@
                     <i class="fab fa-css3-alt" title="CSS"></i>
                 </li>
                 <li class="list-inline-item">
-                    <i class="devicon-mysql-plain-wordmark" title="MySQL"></i>
+                    <i class="devicon-csharp-plain" title="C#"></i>
                 </li>
                 <li class="list-inline-item">
                     <i class="devicon-cplusplus-plain" title="C++"></i>
@@ -203,12 +256,14 @@
                     <i class="devicon-c-plain" title="C"></i>
                 </li>
                 <li class="list-inline-item">
+                    <i class="devicon-visualstudio-plain" title="VisualStudio"></i>
+                </li>
+                <li class="list-inline-item">
                     <i class="devicon-github-plain-wordmark" title="GitHub"></i>
                 </li>
                 <li class="list-inline-item">
                     <i class="devicon-amazonwebservices-plain-wordmark" title="AWS"></i>
                 </li>
-
             </ul>
 
             <div class="subheading mb-3">Workflow</div>
@@ -216,6 +271,68 @@
                 <li>
                     <i class="fa-li fa fa-check"></i>
                     Agile Development &amp; Scrum
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <hr class="m-0">
+
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="projects">
+        <div class="w-100">
+            <h2 class="mb-5">Projects</h2>
+
+            <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+                <div class="resume-content">
+                    <h3 class="mb-0">NearBites - iPhone App</h3>
+                    <div class="subheading mb-3">Finds the nearest restaurants</div>
+                    <div>
+                        <img src={{url_for('static', filename='img/NearBitesDemo.gif')}} width=250 />
+                    </div>
+                    <div>Swift, MVC, CDFusionKit / Yelp Fusion API, Various Cocoapods</div>
+                </div>
+            </div>
+            <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+                <div class="resume-content">
+                    <h3 class="mb-0">Titanic - iPhone App</h3>
+                    <div class="subheading mb-3">Uses machine learning to predict the probability of dying if aboard the Titanic</div>
+                    <div>
+                        <img src={{url_for('static', filename='img/TitanicDemo.gif')}} width=250 />
+                    </div>
+                    <div>Swift, CoreML, CreateML, Python, Kaggle data</div>
+                </div>
+            </div>
+            <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+                <div class="resume-content">
+                    <h3 class="mb-0">https://BrokeNewGrad.com</h3>
+                    <div class="subheading mb-3">Blog and Resume site</div>
+                    <div>Flask, Python, SQLite, AWS, BootStrap</div>
+                </div>
+            </div>
+            <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+                <div class="resume-content">
+                    <h3 class="mb-0">InfiniteImage - Webapp</h3>
+                    <div class="subheading mb-3">Image Hosting Site</div>
+                    <div>Ruby, Ruby on Rails, MySQL, Various Gems</div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <hr class="m-0">
+
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="awards">
+        <div class="w-100">
+            <h2 class="mb-5">Certifications</h2>
+            <ul class="fa-ul mb-0">
+                <li>
+                    <i class="fa-li fa fa-trophy text-warning"></i>
+                    City College of San Francisco - iPhone App Programming Certificate of Accomplishment, 2016
+                </li>
+                <li>
+                    <i class="fa-li fa fa-trophy text-warning"></i>
+                    CodePath.org - Certificate of Achievement CodePath iOS Development, 2019
                 </li>
             </ul>
         </div>
@@ -234,56 +351,6 @@
             <p class="mb-0"> Aside from gaming, I also enjoy physical activities such as, weight lifting, martial arts,
                 and rock climbing.
                 I love pushing myself to new limits, mentally and physically.</p>
-        </div>
-    </section>
-
-    <hr class="m-0">
-
-    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="projects">
-        <div class="w-100">
-            <h2 class="mb-5">Projects</h2>
-            <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
-                <div class="resume-content">
-                    <h3 class="mb-0">https://BrokeNewGrad.com</h3>
-                    <div class="subheading mb-3">Blog and Resume site</div>
-                    <div>Flask, Python, SQLite, AWS, BootStrap</div>
-                </div>
-            </div>
-            <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
-                <div class="resume-content">
-                    <h3 class="mb-0">NearBites - iPhone App</h3>
-                    <div class="subheading mb-3">Find's the nearest restaurants</div>
-                    <div>Swift, MVC, CDFusionKit / Yelp Fusion API, Various Cocoapods</div>
-                </div>
-            </div>
-            <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
-                <div class="resume-content">
-                    <h3 class="mb-0">Titanic - iPhone App</h3>
-                    <div class="subheading mb-3">Uses machine learning to predict your death</div>
-                    <div>Swift, CoreML, CreateML, Python, Kaggle data</div>
-                </div>
-            </div>
-            <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
-                <div class="resume-content">
-                    <h3 class="mb-0">InfiniteImage - Webapp</h3>
-                    <div class="subheading mb-3">Image Hosting Site</div>
-                    <div>Ruby, Ruby on Rails, MySQL, Various Gems</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <hr class="m-0">
-
-    <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="awards">
-        <div class="w-100">
-            <h2 class="mb-5">Certifications</h2>
-            <ul class="fa-ul mb-0">
-                <li>
-                    <i class="fa-li fa fa-trophy text-warning"></i>
-                    iPhone App Programming Certificate of Accomplishment, 2016
-                </li>
-            </ul>
         </div>
     </section>
 
